@@ -1,0 +1,13 @@
+devices:
+  - host: sandbox-iosxe-latest-1.cisco.com
+    username: developer
+    password: C1sco12345
+    device_type: cisco_xe
+  - host: sandbox-iosxe-recomm-1.cisco.com
+    username: developer
+    password: C1sco12345
+    device_type: cisco_xe
+  - host: sandbox-iosxr-1.cisco.com
+    username: admin
+    password: C1sco12345
+    device_type: cisco_xr
