@@ -56,10 +56,22 @@ The following commands are executed in the terminal.
 6. Open the `.env` file and add the environment variables. Please note that all the variables below are strings.
 
     ```python
-    SERVER_USERNAME = '<insert_server_username>'
-    SERVER_HOST = '<insert_server_host>'
-    DST_FOLDER = '<insert_dst_folder>'
+    SERVER_USERNAME = '<insert_server_username>' # e.g. 'admin'
+    SERVER_HOST = '<insert_server_host>' # e.g. '10.10.10.10'
+    DST_FOLDER = '<insert_dst_folder>' # e.g. '/path/to/file/'
+    DEVICE_PASSWORD = 'C1sco12345' # Note: this is just an example password
     ```
+
+    The first three variables relate to the server, but the last variable refers to the password of the devices that we are logging into. We are assuming that each device has the same password, but this might be different in your production environment. Please change this accordingly. 
+
+7. Add your devices to the `devices.yaml` file, which has the following format under the key `devices`:
+
+* `host`
+* `username`
+* `password`
+* `device_type`
+
+    An example `devices.yaml` is added to the repository. These devices are part of the Always-On DevNet Ssandboxes. Please note: the password in the `devices.yaml` are masked and loaded in as an environment variable. 
 
 
 ## Usage

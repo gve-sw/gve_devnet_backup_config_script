@@ -24,6 +24,7 @@ import yaml
 import subprocess
 from dotenv import load_dotenv
 import os
+import datetime
 
 # Load environment variables
 load_dotenv()
@@ -33,13 +34,14 @@ filename_devices = 'devices.yaml'
 SERVER_USERNAME = os.getenv('SERVER_USERNAME')
 SERVER_HOST = os.getenv("SERVER_HOST")
 DST_FOLDER = os.getenv("DST_FOLDER")
+DEVICE_PASSWORD = os.getenv('DEVICE_PASSWORD')
 
 # Helper functions
 ## Get a list of device from a yaml file
 def get_devices_from_file(filename_devices):
     with open(filename_devices, 'r') as file:
         try:
-            devices = yaml.safe_load(file)
+            devices = yaml.safe_load(os.path.expandvars(file.read()))
         except yaml.YAMLError as exc:
             print(exc)
     return devices
@@ -69,7 +71,7 @@ def main():
             file.write(running_config)
 
         # Send the running config file to the server
-        response = send_file_to_server(config_file_path, SERVER_USERNAME, SERVER_HOST, f"{DST_FOLDER}/{device['host']}.txt")
+        response = send_file_to_server(config_file_path, SERVER_USERNAME, SERVER_HOST, f"{DST_FOLDER}/{datetime.datetime.now().strftime('%Y%m%d_%H%M')}_{device['host']}.txt")
         print(response)
 
 
